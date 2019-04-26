@@ -1,57 +1,116 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
-    private CharacterController controller;
-    private Vector3 directionalInput;
-    private Vector3 playerMovementVector;
-    private float playerHorizontalMovement;
 
-    private float playMovementSpeed = 2f;
+    private Transform groundCheck;
+    private Transform ceilingCheck;
+
+    private Rigidbody2D rb;
+    private Vector2 directionalInput;
+    private Vector2 playerMovementVector;
+    private Collider2D colliders;
+
+    private float playerHorizontalMovement;
+    private float playerVerticalMovement = 0;
+    private float playerMovementSpeed = 100f;
+    private bool isGrounded = false;
+    public bool canDoubleJump = false;
+    private float groundedRadius = .2f;
+
+    [SerializeField]
+    private bool isAirControl = false;
+    [SerializeField]
+    private float jumpForce  = 400f;
+    [SerializeField]
+    private LayerMask whatIsGround;
+
 
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody2D>();
+        groundCheck = transform.Find("GroundCheck");
+        ceilingCheck = transform.Find("CeilingCheck");
         
     }
 
     //fizik hesaplamalarinin yapilmasi
     void  FixedUpdate()
     {
-        playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playMovementSpeed;
+        isGrounded = false;
 
-        playerMovementVector = new Vector3(playerHorizontalMovement, 0, 0);
-        
-        MoveCharacterHorizontal(playerMovementVector);
+        CheckGround();
+
+        playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
+
+        MoveCharacterHorizontal(new Vector2(playerHorizontalMovement, rb.velocity.y));
     }
 
-    //oyuncudan gelen girisin set edilmesi
-    public void SetDirectionalInput(Vector3 directionalInput)
-    {
-        this.directionalInput = directionalInput;
-
-    }
 
     //Karakterin yatay olarak hareket ettirilmesi
-    private void MoveCharacterHorizontal(Vector3 directionalInput)
+    private void MoveCharacterHorizontal(Vector2 playerHorizontalMovement)
     {
-        controller.Move(directionalInput);
+        if (isGrounded || isAirControl)
+        {
+            rb.velocity = playerHorizontalMovement;
+
+        }
 
     }
 
+    public void MoveCharacterVertical()
+    {
+
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector2(0, jumpForce));
+
+        }
+
+        if (!isGrounded && canDoubleJump)
+        {
+            rb.AddForce(new Vector2(0, jumpForce));
+            canDoubleJump = false;
+        }
+
+
+    }
 
     public float PlayerMovementSpeed
     {
         set
         {
-            if(value > 0 && value < 6)
+            if(value > 50 && value < 120)
             {
-                playMovementSpeed = value;
+                playerMovementSpeed = value;
             }
-
         }
     }
+
+    //oyuncudan gelen girisin set edilmesi
+    public void SetDirectionalInput(Vector2 directionalInput)
+    {
+        this.directionalInput = directionalInput;
+
+    }
+
+    //karakterin carpisma dedektoru kullanarak yakin oldugu yuzeyin yer olup olmadigini kontrol etmesi
+    private void CheckGround()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                isGrounded = true;
+                canDoubleJump = true;
+            }
+            
+        }
+    }
+    
 
 }

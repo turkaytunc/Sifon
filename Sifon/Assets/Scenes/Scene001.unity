@@ -487,7 +487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef2774b5987f4646bfe7f37cd501b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 1
+  canDoubleJump: 0
+  isAirControl: 0
   jumpForce: 400
   whatIsGround:
     serializedVersion: 2
