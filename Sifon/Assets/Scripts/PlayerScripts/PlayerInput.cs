@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
         directionalInput = new Vector3 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
         Flip(directionalInput);
+        player.SetDirectionalInput(directionalInput);
        
     }
 
