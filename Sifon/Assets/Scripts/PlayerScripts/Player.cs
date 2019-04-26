@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Player : MonoBehaviour
 {
 
@@ -15,15 +15,14 @@ public class Player : MonoBehaviour
 
     private float playerHorizontalMovement;
     private float playerVerticalMovement = 0;
-    private float playerMovementSpeed = 100f;
+    private float playerMovementSpeed = 120f;
     private bool isGrounded = false;
-    public bool canDoubleJump = false;
+    private bool canDoubleJump = false;
     private float groundedRadius = .2f;
+    private float jumpForce  = 400f;
 
     [SerializeField]
     private bool isAirControl = false;
-    [SerializeField]
-    private float jumpForce  = 400f;
     [SerializeField]
     private LayerMask whatIsGround;
 
@@ -60,7 +59,7 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    //Ziplama ve cift ziplama
     public void MoveCharacterVertical()
     {
 
@@ -79,6 +78,7 @@ public class Player : MonoBehaviour
 
     }
 
+    
     public float PlayerMovementSpeed
     {
         set
