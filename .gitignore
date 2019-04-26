@@ -3,6 +3,10 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+Sifon/Assets/Imports.meta
+Sifon/Assets/Imports/
+Sifon/Assets/SampleScenes.meta
+Sifon/Assets/SampleScenes/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
