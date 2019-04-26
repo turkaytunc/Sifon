@@ -2,8 +2,12 @@
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class Player : MonoBehaviour
+public class PlayerMovementControl : MonoBehaviour
 {
+    [SerializeField]
+    private bool isAirControl = false;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
     private Transform groundCheck;
     private Transform ceilingCheck;
@@ -14,17 +18,12 @@ public class Player : MonoBehaviour
     private Collider2D colliders;
 
     private float playerHorizontalMovement;
-    private float playerVerticalMovement = 0;
     private float playerMovementSpeed = 120f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
     private float groundedRadius = .2f;
     private float jumpForce  = 400f;
 
-    [SerializeField]
-    private bool isAirControl = false;
-    [SerializeField]
-    private LayerMask whatIsGround;
 
 
 
@@ -42,6 +41,7 @@ public class Player : MonoBehaviour
         isGrounded = false;
 
         CheckGround();
+
 
         playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
 
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     {
         set
         {
-            if(value > 50 && value < 120)
+            if(value > 100 && value < 200)
             {
                 playerMovementSpeed = value;
             }
@@ -109,8 +109,11 @@ public class Player : MonoBehaviour
                 canDoubleJump = true;
             }
             
+
         }
     }
-    
+
+
+
 
 }

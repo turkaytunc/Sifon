@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerMovementControl))]
 public class PlayerInput : MonoBehaviour
 {
 
     private Vector2 directionalInput;
-    private Player player;
+    private PlayerMovementControl player;
    
 
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerMovementControl>();
         
 
     }
