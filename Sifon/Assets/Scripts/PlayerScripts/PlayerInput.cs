@@ -12,10 +12,10 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<PlayerMovementControl>();
-        
+        player = GetComponent<PlayerMovementControl>();       
 
     }
+
     
     
     private void Update()
@@ -24,10 +24,12 @@ public class PlayerInput : MonoBehaviour
         directionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), 0);
 
         player.SetDirectionalInput(directionalInput);
-        JumpInput();
-        Flip(directionalInput);
-        
 
+        JumpInput();
+
+        Flip(directionalInput);
+
+        
 
     }
 
