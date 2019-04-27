@@ -28,21 +28,27 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = new PlayerData();
-        
+        player = new PlayerData("Mahmut", 80, 120);
+
         Debug.Log(player.PlayerXPos);
         Debug.Log(player.PlayerHealth);
-        
-        SetPlayerTransform();
+        Debug.Log(player.PlayerName);
+
+
+        SetObjectTransform(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos, playerObject);
 
         Instantiate(playerObject, playerObject.transform.position, Quaternion.identity);
         
     }
 
 
-    private void SetPlayerTransform()
+
+
+    //Oyunda olusturulacak objelerin uzaydaki konumlarinin ayarlanmasi
+    private void SetObjectTransform(float x, float y, float z, GameObject newGameObject)
     {
-        playerObject.transform.position = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
+        newGameObject.transform.position = new Vector3(x, y, z);
     }
+
 
 }

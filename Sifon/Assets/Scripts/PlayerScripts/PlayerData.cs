@@ -2,16 +2,29 @@
 public class PlayerData
 {
     private  string playerName;
-    private  float playerHealth = 5;
+    private  float playerHealth = 100;
              
-    public   bool PlayerHasGun { get; set; } = false;
-    public   float PlayerMovementSpeed { get; set; } = 120;
+    public   bool PlayerHasGun { get; set; }
+    public   float PlayerMovementSpeed { get; set; }
              
-    public   float PlayerXPos { get; set; } = 0;
-    public   float PlayerYPos { get; set; } = 0;
-    public   float PlayerZPos { get; set; } = 0;
+    public   float PlayerXPos { get; set; }
+    public   float PlayerYPos { get; set; }
+    public   float PlayerZPos { get; set; }
 
-    
+ 
+
+    public PlayerData() { }
+
+    public PlayerData(string playerName, float playerHealth, float PlayerMovementSpeed)
+    {
+        PlayerName = playerName;
+        PlayerHealth = playerHealth;
+        PlayerHasGun = false;
+
+        PlayerXPos = 0;
+        PlayerYPos = 0;
+        PlayerZPos = 0;
+    }
 
 
     public  string PlayerName
@@ -23,7 +36,7 @@ public class PlayerData
         }
         set
         {
-            if(value != null)
+            if(value != null && value.Length > 5 && value.Length < 10)
             {
                 playerName = value;
 
@@ -54,6 +67,6 @@ public class PlayerData
             }
         }
     }
-    
 
+   
 }
