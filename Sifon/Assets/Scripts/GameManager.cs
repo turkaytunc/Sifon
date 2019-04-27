@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject playerObject;
 
+    private PlayerData player;
+
 
     //Singleton: Hierarchy de tek bir GameMaster objesi olmasinin garanti altina alinmasi
     private void Awake()
@@ -26,20 +28,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        player = new PlayerData();
+        
+        Debug.Log(player.PlayerXPos);
+        Debug.Log(player.PlayerHealth);
+        
         SetPlayerTransform();
-        Debug.Log(playerObject.transform.position);
 
         Instantiate(playerObject, playerObject.transform.position, Quaternion.identity);
-
+        
     }
 
 
     private void SetPlayerTransform()
     {
-        playerObject.transform.position = new Vector3(PlayerData.PlayerXPos, PlayerData.PlayerYPos, PlayerData.PlayerZPos);
+        playerObject.transform.position = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
     }
-
-
-
 
 }

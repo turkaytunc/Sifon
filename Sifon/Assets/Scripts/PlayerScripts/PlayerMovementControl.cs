@@ -42,19 +42,19 @@ public class PlayerMovementControl : MonoBehaviour
 
         CheckGround();
 
-
-        playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
-
-        MoveCharacterHorizontal(new Vector2(playerHorizontalMovement, rb.velocity.y));
+        MoveCharacterHorizontal();
     }
 
 
     //Karakterin yatay olarak hareket ettirilmesi
-    private void MoveCharacterHorizontal(Vector2 playerHorizontalMovement)
+    private void MoveCharacterHorizontal()
     {
+        playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
+
+        //eger karakter yere temas ediyorsa veya havada kontrol aktif ise saga-sola hareket edilebilmesi
         if (isGrounded || isAirControl)
         {
-            rb.velocity = playerHorizontalMovement;
+            rb.velocity = new Vector2(playerHorizontalMovement, rb.velocity.y);
 
         }
 
@@ -78,7 +78,7 @@ public class PlayerMovementControl : MonoBehaviour
 
     }
 
-    
+    //karakterin harektet hizinin belli bir aralikta tutulmasi
     public float PlayerMovementSpeed
     {
         set
@@ -108,8 +108,6 @@ public class PlayerMovementControl : MonoBehaviour
                 isGrounded = true;
                 canDoubleJump = true;
             }
-            
-
         }
     }
 

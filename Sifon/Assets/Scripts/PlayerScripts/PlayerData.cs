@@ -1,16 +1,20 @@
 ﻿
-public static class PlayerData
+public class PlayerData
 {
-    private static string playerName;
-    private static float PlayerHealth { get; set; } = 100;
-    private static float PlayerMovementSpeed { get; set; }
-    public static float PlayerXPos { get; set; } = 0;
-    public static float PlayerYPos { get; set; } = 0;
-    public static float PlayerZPos { get; set; } = 0;
+    private  string playerName;
+    private  float playerHealth = 5;
+             
+    public   bool PlayerHasGun { get; set; } = false;
+    public   float PlayerMovementSpeed { get; set; } = 120;
+             
+    public   float PlayerXPos { get; set; } = 0;
+    public   float PlayerYPos { get; set; } = 0;
+    public   float PlayerZPos { get; set; } = 0;
 
     
 
-    public static string PlayerName
+
+    public  string PlayerName
     {
         
         get
@@ -27,6 +31,26 @@ public static class PlayerData
             else
             {
                 playerName = "NoName";
+            }
+        }
+    }
+
+    public  float PlayerHealth
+    {
+        get
+        {
+            return playerHealth;
+        }
+
+        set
+        {
+            if(value >= 0 && value <= 100)
+            {
+                playerHealth = value;
+            }
+            else
+            {
+                playerHealth = 1;
             }
         }
     }
