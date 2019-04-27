@@ -7,37 +7,39 @@ public class CameraFollow : MonoBehaviour
     private Vector3 cameraFollowPosition;
     private Vector3 cameraDirection;
     private float objectDistance;
-    private float cameraFocusSpeed = 2f;
+    private const float cameraFocusSpeed = 2f;
 
 
 
     
-   
-    void Update()
+    //Tum fizik ve veri girisi hesaplamalarinin ardinda lateupdate cagrilir
+    void LateUpdate()
     {
-        cameraFollowPosition.z = transform.position.z;
 
-        cameraDirection = (cameraFollowPosition - transform.position).normalized;
-
-        objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
-        
-
-        transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
+        ChangeCameraPositioning();
         
     }
 
 
     public Vector3 CameraFollowPosition
     {
-        get
-        {
-            return cameraFollowPosition;
-        }
-
         set
         {
             cameraFollowPosition = value;
         }
+    }
+
+    //Kamera pozisyonunun ayarlanmasi
+    private void ChangeCameraPositioning()
+    {
+        cameraFollowPosition.z = transform.position.z;
+
+        cameraDirection = (cameraFollowPosition - transform.position).normalized;
+
+        objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
+
+        transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
+
     }
 
 
