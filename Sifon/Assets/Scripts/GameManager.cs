@@ -5,14 +5,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
  
-    public GameObject playerObject;
+    [SerializeField]
+    private GameObject playerObject;
 
 
-
-
+    //Singleton: Hierarchy de tek bir GameMaster objesi olmasinin garanti altina alinmasi
     private void Awake()
     {
-        Debug.Log(PlayerData.PlayerName);
         if(instance == null)
         {
             instance = this;
@@ -27,29 +26,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
-        playerObject.transform.position = new Vector3(PlayerData.PlayerXPos, PlayerData.PlayerYPos, PlayerData.PlayerZPos);
+        SetPlayerTransform();
         Debug.Log(playerObject.transform.position);
-      
-        Show();
+
         Instantiate(playerObject, playerObject.transform.position, Quaternion.identity);
 
     }
 
 
-    public void Show()
-    {
-        PlayerData.PlayerName = "Haso";
-        Debug.Log(PlayerData.PlayerName);
-    }
-
     private void SetPlayerTransform()
     {
-        
-        
+        playerObject.transform.position = new Vector3(PlayerData.PlayerXPos, PlayerData.PlayerYPos, PlayerData.PlayerZPos);
     }
 
-    
 
-  
+
+
 }
