@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = new PlayerData("Mahmut", 80, 120);
-
         Debug.Log(player.PlayerXPos);
         Debug.Log(player.PlayerHealth);
         Debug.Log(player.PlayerName);
