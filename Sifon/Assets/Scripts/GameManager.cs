@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     private GameObject mainCameraObject;
 
     private PlayerData player;
+    private PlayerMovementControl movementControl;
+    public Vector3 playerCurrentPosition { get; set; }
+    
+
 
 
     //Singleton: Hierarchy de tek bir GameMaster objesi olmasinin garanti altina alinmasi
@@ -32,11 +36,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
         player = new PlayerData("Mahmut", 80, 120);
-        
 
-        SetObjectTransform(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos, playerObject);
+        movementControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
+
+        
 
         
         
@@ -45,20 +49,32 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (playerCurrentPosition == null)
+        {
+            Vector3 playerPosition = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
+            SetObjectTransform(playerPosition, playerObject);
+
+        }
+        else
+        {
+            SetObjectTransform(playerCurrentPosition, playerObject);
+        }
+
         CheckSceneEntities();
+
     }
 
 
 
 
     //Oyunda olusturulacak objelerin uzaydaki konumlarinin ayarlanmasi
-    private void SetObjectTransform(float x, float y, float z, GameObject newGameObject)
+    private void SetObjectTransform(Vector3 newPosition, GameObject newGameObject)
     {
-        newGameObject.transform.position = new Vector3(x, y, z);
+        newGameObject.transform.position = newPosition;
     }
 
 
-
+    //Yok edilen oyun objelerinin yerine yenilerinin olusturulmasi
     private void CheckSceneEntities()
     {
         if (GameObject.FindWithTag("Player") == null)
@@ -74,6 +90,8 @@ public class GameManager : MonoBehaviour
             Instantiate(killZoneObject, transform.position, Quaternion.identity);
         }
     }
+
+    
 
 
 }

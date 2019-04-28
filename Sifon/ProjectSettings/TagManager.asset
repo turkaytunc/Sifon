@@ -7,6 +7,8 @@ TagManager:
   - GameManager
   - KillZone
   - BackgroundSky
+  - Canvas
+  - Background
   layers:
   - Default
   - TransparentFX
