@@ -655,11 +655,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundSky
       objectReference: {fileID: 0}
-    - target: {fileID: 3581506729697318313, guid: d9a18e585a1f07546887752ad7cadb58,
-        type: 3}
-      propertyPath: m_TagString
-      value: Background
-      objectReference: {fileID: 0}
     - target: {fileID: 3581506729697318319, guid: d9a18e585a1f07546887752ad7cadb58,
         type: 3}
       propertyPath: m_LocalPosition.x
