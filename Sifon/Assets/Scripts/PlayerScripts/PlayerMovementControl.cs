@@ -11,24 +11,27 @@ public class PlayerMovementControl : MonoBehaviour
 
     private Transform groundCheck;
     private Transform ceilingCheck;
+    
 
     private Rigidbody2D rb;
     private Vector2 directionalInput;
     private Vector2 playerMovementVector;
     private Collider2D colliders;
+    private CameraFollow cameraFollow;
 
     private float playerHorizontalMovement;
     private float playerMovementSpeed = 120f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
-    private float groundedRadius = .2f;
-    private float jumpForce  = 400f;
+    private const float groundedRadius = .2f;
+    private const float jumpForce  = 400f;
 
 
 
 
     void Start()
     {
+        cameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("GroundCheck");
         ceilingCheck = transform.Find("CeilingCheck");
@@ -38,6 +41,8 @@ public class PlayerMovementControl : MonoBehaviour
     //fizik hesaplamalarinin yapilmasi
     void  FixedUpdate()
     {
+        cameraFollow.CameraFollowPosition = transform.position;
+        
         isGrounded = false;
 
         CheckGround();

@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraFollow : MonoBehaviour
+{
+    private Vector3 cameraFollowPosition;
+    private Vector3 cameraDirection;
+    private float objectDistance;
+    private const float cameraFocusSpeed = 2f;
+
+
+
+    
+    //Tum fizik ve veri girisi hesaplamalarinin ardinda lateupdate cagrilir
+    void LateUpdate()
+    {
+
+        ChangeCameraPositioning();
+        
+    }
+
+
+    public Vector3 CameraFollowPosition
+    {
+        set
+        {
+            cameraFollowPosition = value;
+        }
+    }
+
+    //Kamera pozisyonunun ayarlanmasi
+    private void ChangeCameraPositioning()
+    {
+        cameraFollowPosition.z = transform.position.z;
+        
+
+        cameraDirection = (cameraFollowPosition - transform.position).normalized;
+
+        objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
+
+        transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
+        
+
+    }
+
+
+}

@@ -46,6 +46,19 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+
+
+    public bool KeyboardInputEscape()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     private void JumpInput()
     {

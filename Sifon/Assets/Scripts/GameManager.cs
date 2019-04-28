@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
  
     [SerializeField]
     private GameObject playerObject;
+    [SerializeField]
+    private GameObject killZoneObject;
+    [SerializeField]
+    private GameObject mainCameraObject;
 
     private PlayerData player;
 
@@ -28,16 +32,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
         player = new PlayerData("Mahmut", 80, 120);
-        Debug.Log(player.PlayerXPos);
-        Debug.Log(player.PlayerHealth);
-        Debug.Log(player.PlayerName);
-
+        
 
         SetObjectTransform(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos, playerObject);
 
-        Instantiate(playerObject, playerObject.transform.position, Quaternion.identity);
         
+        
+    }
+
+
+    private void Update()
+    {
+        CheckSceneEntities();
     }
 
 
@@ -47,6 +55,24 @@ public class GameManager : MonoBehaviour
     private void SetObjectTransform(float x, float y, float z, GameObject newGameObject)
     {
         newGameObject.transform.position = new Vector3(x, y, z);
+    }
+
+
+
+    private void CheckSceneEntities()
+    {
+        if (GameObject.FindWithTag("Player") == null)
+        {
+            Instantiate(playerObject, playerObject.transform.position, Quaternion.identity);
+        }
+        if (GameObject.FindWithTag("MainCamera") == null)
+        {
+            Instantiate(mainCameraObject, new Vector3(0, 3, -10), Quaternion.identity);
+        }
+        if (GameObject.FindWithTag("KillZone") == null)
+        {
+            Instantiate(killZoneObject, transform.position, Quaternion.identity);
+        }
     }
 
 
