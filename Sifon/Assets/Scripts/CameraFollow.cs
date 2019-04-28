@@ -33,12 +33,14 @@ public class CameraFollow : MonoBehaviour
     private void ChangeCameraPositioning()
     {
         cameraFollowPosition.z = transform.position.z;
+        
 
         cameraDirection = (cameraFollowPosition - transform.position).normalized;
 
         objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
 
         transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
+        
 
     }
 
