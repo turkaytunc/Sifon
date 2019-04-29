@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -9,18 +7,11 @@ public class CameraFollow : MonoBehaviour
     private float objectDistance;
     private const float cameraFocusSpeed = 2f;
 
-
-
-    
     //Tum fizik ve veri girisi hesaplamalarinin ardinda lateupdate cagrilir
     void LateUpdate()
     {
-
-        ChangeCameraPositioning();
-        
+        ChangeCameraPositioning();      
     }
-
-
     public Vector3 CameraFollowPosition
     {
         set
@@ -32,13 +23,10 @@ public class CameraFollow : MonoBehaviour
     //Kamera pozisyonunun ayarlanmasi
     private void ChangeCameraPositioning()
     {
-        cameraFollowPosition.z = transform.position.z;
-        
-
+        cameraFollowPosition.z = transform.position.z;       
         cameraDirection = (cameraFollowPosition - transform.position).normalized;
 
         objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
-
         transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
         
 
