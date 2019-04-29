@@ -81,7 +81,7 @@ public class CanvasScript : MonoBehaviour
 
     private void MainMenu()
     {
-        if (playerInput.KeyboardInputEscape())
+        if (playerInput.EscapeButtonDown())
         {
             if (!menuPanel.gameObject.activeInHierarchy)
             {

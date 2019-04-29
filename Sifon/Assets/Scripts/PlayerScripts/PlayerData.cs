@@ -11,8 +11,6 @@ public class PlayerData
     public   float PlayerYPos { get; set; }
     public   float PlayerZPos { get; set; }
 
- 
-
     public PlayerData() { }
 
     public PlayerData(string playerName, float playerHealth, float PlayerMovementSpeed)
@@ -28,8 +26,7 @@ public class PlayerData
 
 
     public  string PlayerName
-    {
-        
+    {        
         get
         {
             return playerName;
@@ -54,7 +51,6 @@ public class PlayerData
         {
             return playerHealth;
         }
-
         set
         {
             if(value >= 0 && value <= 100)
@@ -66,7 +62,5 @@ public class PlayerData
                 playerHealth = 1;
             }
         }
-    }
-
-   
+    }  
 }

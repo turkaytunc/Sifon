@@ -4,13 +4,14 @@ public class Parallax : MonoBehaviour
 {
     public Transform[] backgrounds;
 
-    private  float smoothing = 1f;
     private GameObject[] backGroundArray;
-    private float[] parallaxScale;
     private Transform cam;
     private Vector3 previousCamPos;
-    private float parallax;
     private Vector3 backgroundTargetPos;
+
+    private float[] parallaxScale;
+    private const float smoothing = 1f;
+    private float parallax;
     private float backgroundTargetPosX;
 
     private void Start()
@@ -35,8 +36,6 @@ public class Parallax : MonoBehaviour
         previousCamPos = cam.position;
     }
 
-
-
     private void CalculateParallax()
     {
         for (int i = 0; i < backgrounds.Length; i++)
@@ -47,7 +46,6 @@ public class Parallax : MonoBehaviour
             backgrounds[i].position = Vector3.Lerp(backgrounds[i].position, backgroundTargetPos, smoothing * Time.deltaTime);// lineer interpolasyon ile su anki konumdan , gitmesi gereken konuma belli bir hiz ile gecisi
         }
     }
-
 
     private void FillTransformArrays()
     {
