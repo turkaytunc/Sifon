@@ -1,25 +1,17 @@
 ﻿using UnityEngine;
-using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
  
-    [SerializeField]
-    private GameObject playerObject;
-    [SerializeField]
-    private GameObject killZoneObject;
-    [SerializeField]
-    private GameObject mainCameraObject;
+    [SerializeField]private GameObject playerObject;
+    [SerializeField]private GameObject killZoneObject;
+    [SerializeField]private GameObject mainCameraObject;
 
     private PlayerData player;
-    private PlayerMovementControl movementControl;
     public Vector3 playerCurrentPosition { get; set; }
-    
 
-
-
-    //Singleton: Hierarchy de tek bir GameMaster objesi olmasinin garanti altina alinmasi
+    //Singleton: oyunda tek bir tane GameMaster objesi olmasinin garanti altina alinmasi
     private void Awake()
     {
         if(instance == null)
@@ -35,44 +27,23 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {     
         player = new PlayerData("Mahmut", 80, 120);
-
-        movementControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
-
-        
-
-        
-        
     }
-
 
     private void Update()
     {
-        if (playerCurrentPosition == null)
-        {
-            Vector3 playerPosition = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
-            SetObjectTransform(playerPosition, playerObject);
-
-        }
-        else
-        {
-            SetObjectTransform(playerCurrentPosition, playerObject);
-        }
+        CreatePlayer();
 
         CheckSceneEntities();
 
     }
-
-
-
 
     //Oyunda olusturulacak objelerin uzaydaki konumlarinin ayarlanmasi
     private void SetObjectTransform(Vector3 newPosition, GameObject newGameObject)
     {
         newGameObject.transform.position = newPosition;
     }
-
 
     //Yok edilen oyun objelerinin yerine yenilerinin olusturulmasi
     private void CheckSceneEntities()
@@ -88,6 +59,20 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindWithTag("KillZone") == null)
         {
             Instantiate(killZoneObject, transform.position, Quaternion.identity);
+        }
+    }
+
+    //player objesi ilk defa yaratiliyorsa konumu yaratilan nesneden al aksi halde olen karakterin eski baslangic konumunu kullan
+    private void CreatePlayer()
+    {
+        if (playerCurrentPosition == null)
+        {
+            Vector3 playerPosition = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
+            SetObjectTransform(playerPosition, playerObject);
+        }
+        else
+        {
+            SetObjectTransform(playerCurrentPosition, playerObject);
         }
     }
 

@@ -11,8 +11,8 @@ public class PlayerMovementControl : MonoBehaviour
 
     private Transform groundCheck;
     private Transform ceilingCheck;
+    private PlayerInput playerInput;
     
-
     private Rigidbody2D rb;
     private Vector2 directionalInput;
     private Vector2 playerMovementVector;
@@ -26,61 +26,50 @@ public class PlayerMovementControl : MonoBehaviour
     private const float groundedRadius = .2f;
     private const float jumpForce  = 400f;
 
-
-
-
     void Start()
     {
         cameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("GroundCheck");
-        ceilingCheck = transform.Find("CeilingCheck");
-        
+        ceilingCheck = transform.Find("CeilingCheck");      
     }
 
     //fizik hesaplamalarinin yapilmasi
     void  FixedUpdate()
     {
+        directionalInput = playerInput.DirectionalInput;
         cameraFollow.CameraFollowPosition = transform.position;
         
         isGrounded = false;
-
         CheckGround();
-
         MoveCharacterHorizontal();
+        MoveCharacterVertical();
     }
-
 
     //Karakterin yatay olarak hareket ettirilmesi
     private void MoveCharacterHorizontal()
     {
         playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
-
         //eger karakter yere temas ediyorsa veya havada kontrol aktif ise saga-sola hareket edilebilmesi
         if (isGrounded || isAirControl)
         {
             rb.velocity = new Vector2(playerHorizontalMovement, rb.velocity.y);
-
         }
-
     }
-    //Ziplama ve cift ziplama
-    public void MoveCharacterVertical()
-    {
 
-        if (isGrounded)
+    //Ziplama ve cift ziplama
+    private void MoveCharacterVertical()
+    {
+        if (isGrounded && playerInput.JumpButtonDown())
         {
             rb.AddForce(new Vector2(0, jumpForce));
-
         }
-
-        if (!isGrounded && canDoubleJump)
+        if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
         {
             rb.AddForce(new Vector2(0, jumpForce));
             canDoubleJump = false;
         }
-
-
     }
 
     //karakterin harektet hizinin belli bir aralikta tutulmasi
@@ -93,13 +82,6 @@ public class PlayerMovementControl : MonoBehaviour
                 playerMovementSpeed = value;
             }
         }
-    }
-
-    //oyuncudan gelen girisin set edilmesi
-    public void SetDirectionalInput(Vector2 directionalInput)
-    {
-        this.directionalInput = directionalInput;
-
     }
 
     //karakterin carpisma dedektoru kullanarak yakin oldugu yuzeyin yer olup olmadigini kontrol etmesi

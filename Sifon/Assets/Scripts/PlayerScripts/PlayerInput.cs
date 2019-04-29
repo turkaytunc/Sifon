@@ -5,32 +5,20 @@
 public class PlayerInput : MonoBehaviour
 {
 
-    private Vector2 directionalInput;
+    public Vector2 DirectionalInput { get; set; }
     private PlayerMovementControl player;
-   
-
 
     private void Start()
     {
-        player = GetComponent<PlayerMovementControl>();       
-
+        player = GetComponent<PlayerMovementControl>();
     }
 
-    
-    
     private void Update()
-    {
-        
-        directionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), 0);
+    { 
+        DirectionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), 0);
+        JumpButtonDown();
 
-        player.SetDirectionalInput(directionalInput);
-
-        JumpInput();
-
-        Flip(directionalInput);
-
-        
-
+        Flip(DirectionalInput);
     }
 
     //Klavye girisine gore karakterin baktigi yonun degistirilmesi
@@ -46,26 +34,21 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-
-
-    public bool KeyboardInputEscape()
+    public bool EscapeButtonDown()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;    
     }
     
-    private void JumpInput()
+    public bool JumpButtonDown()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            player.MoveCharacterVertical();
+            return true;
         }
-
+        return false;
     }
 }
