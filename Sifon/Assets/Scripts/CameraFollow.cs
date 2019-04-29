@@ -19,7 +19,6 @@ public class CameraFollow : MonoBehaviour
             cameraFollowPosition = value;
         }
     }
-
     //Kamera pozisyonunun ayarlanmasi
     private void ChangeCameraPositioning()
     {
