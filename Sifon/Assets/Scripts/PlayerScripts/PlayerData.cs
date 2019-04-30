@@ -1,5 +1,4 @@
-﻿
-public class PlayerData
+﻿public class PlayerData
 {
     private  string playerName;
     private  float playerHealth = 100;

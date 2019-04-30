@@ -20,7 +20,7 @@ public class PlayerMovementControl : MonoBehaviour
     private CameraFollow cameraFollow;
 
     private float playerHorizontalMovement;
-    private float playerMovementSpeed = 120f;
+    private float playerMovementSpeed = 200f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
     private const float groundedRadius = .2f;

@@ -183,7 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgrounds:
   - {fileID: 3581506730109216212}
-  smoothing: 2
 --- !u!1001 &87687830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -422,6 +421,26 @@ PrefabInstance:
     - target: {fileID: 4784497851731160359, guid: 28cb81e7be384c646aed139cfe7b7736,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481188652, guid: 28cb81e7be384c646aed139cfe7b7736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481188652, guid: 28cb81e7be384c646aed139cfe7b7736, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823768125, guid: 28cb81e7be384c646aed139cfe7b7736, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823768125, guid: 28cb81e7be384c646aed139cfe7b7736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823768125, guid: 28cb81e7be384c646aed139cfe7b7736, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -728,7 +747,7 @@ PrefabInstance:
     - target: {fileID: 8207000037468196897, guid: af276396d1bd1c845a0b77ee1cd05905,
         type: 3}
       propertyPath: m_Name
-      value: Envorinment
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 8207000037468196902, guid: af276396d1bd1c845a0b77ee1cd05905,
         type: 3}
