@@ -24,6 +24,7 @@ public class CanvasScript : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
     }
 
     private void Start()

@@ -17,17 +17,18 @@ public class Parallax : MonoBehaviour
     private void Start()
     {
         cam = Camera.main.transform;
-
+        
         FillTransformArrays();  
     }
 
     private void Update()
     {
-        if(cam == null)
+
+        if (cam == null)
         {
             cam = Camera.main.transform;
         }
-        if(backgrounds[0] == null)
+        if (backgrounds == null)
         {
             FillTransformArrays();
         }
@@ -50,7 +51,6 @@ public class Parallax : MonoBehaviour
     private void FillTransformArrays()
     {
         backGroundArray = GameObject.FindGameObjectsWithTag("Background");//background ismine sahip objelerin bulunup arraye alinmasi
-        
         //bulunan tum background objelerinin transformlarinin arraye aktarilmasi
         for (int i = 0; i < backGroundArray.Length; i++)
         {
@@ -65,6 +65,8 @@ public class Parallax : MonoBehaviour
         {
             parallaxScale[i] = backgrounds[i].position.z * -1;
         }
+
+
     }
 
 

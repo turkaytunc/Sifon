@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject mainCameraObject;
 
     private PlayerData player;
-    public Vector3 playerCurrentPosition { get; set; }
+    public Vector3 PlayerCurrentPosition { get; set; }
 
     //Singleton: oyunda tek bir tane GameMaster objesi olmasinin garanti altina alinmasi
     private void Awake()
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {     
         player = new PlayerData("Mahmut", 80, 120);
+
     }
 
     private void Update()
@@ -65,14 +66,14 @@ public class GameManager : MonoBehaviour
     //player objesi ilk defa yaratiliyorsa konumu yaratilan nesneden al aksi halde olen karakterin eski baslangic konumunu kullan
     private void CreatePlayer()
     {
-        if (playerCurrentPosition == null)
+        if (PlayerCurrentPosition == null)
         {
             Vector3 playerPosition = new Vector3(player.PlayerXPos, player.PlayerYPos, player.PlayerZPos);
             SetObjectTransform(playerPosition, playerObject);
         }
         else
         {
-            SetObjectTransform(playerCurrentPosition, playerObject);
+            SetObjectTransform(PlayerCurrentPosition, playerObject);
         }
     }
 
