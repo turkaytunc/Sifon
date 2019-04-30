@@ -27,7 +27,7 @@ public class Parallax : MonoBehaviour
         {
             cam = Camera.main.transform;
         }
-        if(backgrounds[0] == null)
+        if (backgrounds[0] == null)
         {
             FillTransformArrays();
         }
@@ -65,6 +65,8 @@ public class Parallax : MonoBehaviour
         {
             parallaxScale[i] = backgrounds[i].position.z * -1;
         }
+
+
     }
 
 
