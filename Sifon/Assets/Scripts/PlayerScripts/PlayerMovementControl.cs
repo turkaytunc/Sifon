@@ -20,7 +20,7 @@ public class PlayerMovementControl : MonoBehaviour
     private CameraFollow cameraFollow;
 
     private float playerHorizontalMovement;
-    private float playerMovementSpeed = 200f;
+    private float playerMovementSpeed = 100f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
     private const float groundedRadius = .2f;
@@ -43,12 +43,12 @@ public class PlayerMovementControl : MonoBehaviour
         
         isGrounded = false;
         CheckGround();
-        MoveCharacterHorizontal();
-        MoveCharacterVertical();
+        MoveCharacter();
+        
     }
 
     //Karakterin yatay olarak hareket ettirilmesi
-    private void MoveCharacterHorizontal()
+    private void MoveCharacter()
     {
         playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
         //eger karakter yere temas ediyorsa veya havada kontrol aktif ise saga-sola hareket edilebilmesi
@@ -56,11 +56,6 @@ public class PlayerMovementControl : MonoBehaviour
         {
             rb.velocity = new Vector2(playerHorizontalMovement, rb.velocity.y);
         }
-    }
-
-    //Ziplama ve cift ziplama
-    private void MoveCharacterVertical()
-    {
         if (isGrounded && playerInput.JumpButtonDown())
         {
             rb.AddForce(new Vector2(0, jumpForce));
@@ -69,7 +64,6 @@ public class PlayerMovementControl : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpForce));
             canDoubleJump = false;
-
         }
     }
 
