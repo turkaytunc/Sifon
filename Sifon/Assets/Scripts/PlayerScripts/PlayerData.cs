@@ -11,7 +11,7 @@ public class PlayerData
     public   float PlayerYPos { get; set; }
     public   float PlayerZPos { get; set; }
 
-    public PlayerData() { }
+    //public PlayerData() { }
 
     public PlayerData(string playerName, float playerHealth, float PlayerMovementSpeed)
     {
@@ -23,7 +23,6 @@ public class PlayerData
         PlayerYPos = 0;
         PlayerZPos = 0;
     }
-
 
     public  string PlayerName
     {        

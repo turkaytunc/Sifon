@@ -69,6 +69,7 @@ public class PlayerMovementControl : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpForce));
             canDoubleJump = false;
+
         }
     }
 

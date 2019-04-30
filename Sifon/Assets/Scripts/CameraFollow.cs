@@ -27,8 +27,6 @@ public class CameraFollow : MonoBehaviour
 
         objectDistance = Vector3.Distance(cameraFollowPosition, transform.position);
         transform.position = transform.position + objectDistance * cameraFocusSpeed * cameraDirection * Time.deltaTime;
-        
-
     }
 
 
