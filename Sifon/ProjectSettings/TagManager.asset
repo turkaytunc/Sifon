@@ -9,6 +9,7 @@ TagManager:
   - BackgroundSky
   - Canvas
   - Background
+  - FirePoint
   layers:
   - Default
   - TransparentFX

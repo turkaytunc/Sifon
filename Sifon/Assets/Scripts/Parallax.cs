@@ -39,6 +39,7 @@ public class Parallax : MonoBehaviour
 
     private void CalculateParallax()
     {
+        
         for (int i = 0; i < backgrounds.Length; i++)
         {
             parallax = (previousCamPos.x - cam.position.x) * parallaxScale[i];//kameranin bir onceki karedeki konumu ve su an ki konumunun cikarilip derinlik ile carpilmasi
@@ -50,7 +51,9 @@ public class Parallax : MonoBehaviour
 
     private void FillTransformArrays()
     {
+        
         backGroundArray = GameObject.FindGameObjectsWithTag("Background");//background ismine sahip objelerin bulunup arraye alinmasi
+        
         //bulunan tum background objelerinin transformlarinin arraye aktarilmasi
         for (int i = 0; i < backGroundArray.Length; i++)
         {
@@ -59,6 +62,7 @@ public class Parallax : MonoBehaviour
 
         previousCamPos = cam.position;
         parallaxScale = new float[backgrounds.Length];
+        
 
         //arrayimizdeki tum transformlarin derinligini(z yonundeki vektor degeri) bir arraye doldurulmasi
         for (int i = 0; i < backgrounds.Length; i++)

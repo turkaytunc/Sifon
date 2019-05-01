@@ -5,32 +5,14 @@ public class PlayerInput : MonoBehaviour
 {
 
     public Vector2 DirectionalInput { get; set; }
-    private PlayerMovementControl player;
 
     private void Start()
     {
-        player = GetComponent<PlayerMovementControl>();
     }
 
     private void Update()
-    { 
-        DirectionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), 0);
-        JumpButtonDown();
-
-        Flip(DirectionalInput);
-    }
-
-    //Klavye girisine gore karakterin baktigi yonun degistirilmesi
-    private void Flip(Vector2 directionalInput)
     {
-        if(directionalInput.x > 0)
-        {
-            player.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        if(directionalInput.x < 0)
-        {
-            player.GetComponent<SpriteRenderer>().flipX = true;
-        }
+        DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
     }
 
     public bool EscapeButtonDown()
@@ -39,9 +21,9 @@ public class PlayerInput : MonoBehaviour
         {
             return true;
         }
-        return false;    
+        return false;
     }
-    
+
     public bool JumpButtonDown()
     {
         if (Input.GetButtonDown("Jump"))
@@ -50,4 +32,24 @@ public class PlayerInput : MonoBehaviour
         }
         return false;
     }
-}
+
+    public bool LeftMouseButton()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool LeftMouseButtonDown()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+};
+
