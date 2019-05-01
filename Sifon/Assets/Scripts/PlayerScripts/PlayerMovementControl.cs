@@ -40,7 +40,6 @@ public class PlayerMovementControl : MonoBehaviour
     {
         directionalInput = playerInput.DirectionalInput;
         cameraFollow.CameraFollowPosition = transform.position;
-        
         isGrounded = false;
         CheckGround();
         MoveCharacter();

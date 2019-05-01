@@ -11,8 +11,8 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void Update()
-    { 
-        DirectionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), 0);
+    {
+        DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
     }
 
     public bool EscapeButtonDown()
@@ -21,9 +21,9 @@ public class PlayerInput : MonoBehaviour
         {
             return true;
         }
-        return false;    
+        return false;
     }
-    
+
     public bool JumpButtonDown()
     {
         if (Input.GetButtonDown("Jump"))
@@ -32,4 +32,24 @@ public class PlayerInput : MonoBehaviour
         }
         return false;
     }
-}
+
+    public bool LeftMouseButton()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool LeftMouseButtonDown()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+};
+
