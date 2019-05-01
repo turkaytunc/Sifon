@@ -20,6 +20,7 @@ public class AnimationControl : MonoBehaviour
 
     void Update()
     {
+        NullCheck();        
         Flip(playerInput.DirectionalInput);
         ObjAnimation();
     }
@@ -59,5 +60,29 @@ public class AnimationControl : MonoBehaviour
             bulletPoint.transform.rotation = Quaternion.Euler(0, -180, 0);
             bulletPoint.transform.position = new Vector3(playerMovement.transform.position.x - .25f, playerMovement.transform.position.y, playerMovement.transform.position.z);
         }
+    }
+
+    private void NullCheck()
+    {
+        if (playerMovement == null)
+        {
+            playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
+        }
+
+        if (playerInput == null)
+        {
+            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+        }
+
+        if (anim == null)
+        {
+            anim = GameObject.Find("Player").GetComponent<Animator>();
+        }
+
+        if (firePoint == null)
+        {
+            firePoint = GameObject.Find("Player").GetComponent<FirePoint>();
+        }
+        
     }
 }

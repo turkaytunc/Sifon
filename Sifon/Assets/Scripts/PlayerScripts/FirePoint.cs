@@ -10,7 +10,7 @@ public class FirePoint : MonoBehaviour
     public GameObject bullet;
     private PlayerInput playerInput;
     private Vector3 right, left, bulletDirection;
-    public bool FaceRight { get; set; }
+    public bool FaceRight { get; set; } = true;
 
 
     void Start()

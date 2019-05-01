@@ -107,8 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 6406252500172229193, guid: f7e37a8c65ba7b245987022ff4ad6d8c,
-    type: 3}
+  m_Sprite: {fileID: 924041230034365631, guid: 7e0ac81f65231aa41b4f37bb8075a9e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef2774b5987f4646bfe7f37cd501b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAirControl: 0
+  isAirControl: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
@@ -216,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePointTransform: {fileID: 8718296105143162310}
-  bullet: {fileID: 0}
+  bullet: {fileID: 6576839417389289347, guid: 0d443f87946ed9e429b05a33b58a3f57, type: 3}
 --- !u!1 &9092552579525069426
 GameObject:
   m_ObjectHideFlags: 0
