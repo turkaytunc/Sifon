@@ -12,14 +12,11 @@ public class AnimationControl : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
         playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        directionalInput = playerInput.DirectionalInput;
-        Flip(directionalInput);
+        Flip(playerInput.DirectionalInput);
     }
 
     //Klavye girisine gore karakterin baktigi yonun degistirilmesi
