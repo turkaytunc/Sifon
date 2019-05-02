@@ -8,7 +8,9 @@ public class CanvasScript : MonoBehaviour
     private PlayerInput playerInput;
     private Transform menuPanel;
     private PlayerMovementControl movementControl;
+    private PlayerStats playerStats;
     private Vector3 playerCurrentPosition;
+    private float playerCurrentHealth;
     private string json;
     private string loadedString;
 
@@ -24,13 +26,13 @@ public class CanvasScript : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-
     }
 
     private void Start()
     {
         playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
         movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
+        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         menuPanel = transform.Find("MenuPanel");
         menuPanel.gameObject.SetActive(false);
     }
@@ -41,7 +43,15 @@ public class CanvasScript : MonoBehaviour
         {
             movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
         }
+        if (playerInput.KButtonDown())
+        {
+            playerStats.Health += 5;
+        }
+
+        playerCurrentHealth = playerStats.Health;
         playerCurrentPosition = movementControl.transform.position;
+
+        HandleUI();
 
         MainMenu();
         
@@ -53,10 +63,13 @@ public class CanvasScript : MonoBehaviour
         {
             playerPosition = playerCurrentPosition,
             score = transform.Find("ScoreText").gameObject.GetComponent<Text>().text,
+            playerHealth = playerCurrentHealth
         };
 
         json = JsonUtility.ToJson(saveObject);
         SaveLoadHandler.SaveString(json);
+
+
 
         //YAPILACAK: Oyunun kaydedildigine dair bilgiyi ekranda gostermek icin ui eklemesi yap
         Debug.Log("Game Saved");
@@ -68,9 +81,9 @@ public class CanvasScript : MonoBehaviour
         SaveObject loadObject = JsonUtility.FromJson<SaveObject>(loadedString);
 
         movementControl.transform.position = loadObject.playerPosition;
-        transform.Find("ScoreText").gameObject.GetComponent<Text>().text = loadObject.score;
+        playerStats.Health = loadObject.playerHealth;
+        playerStats.Score = float.Parse(loadObject.score);
 
-        //YAPILACAK: Oyunun geri yuklendigini belirtmek icin ui eklelemesi yap
         Debug.Log("Game Loaded");
     }
 
@@ -99,6 +112,16 @@ public class CanvasScript : MonoBehaviour
     {
         public Vector3 playerPosition;
         public string score;
+        public float playerHealth;
     };
+
+
+    private void HandleUI()
+    {
+
+        transform.Find("PlayerHealth").gameObject.GetComponent<Text>().text = playerStats.Health.ToString();
+        transform.Find("ScoreText").gameObject.GetComponent<Text>().text = playerStats.Score.ToString();
+
+    }
 
 }

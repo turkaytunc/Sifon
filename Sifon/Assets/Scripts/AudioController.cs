@@ -5,7 +5,7 @@ public class AudioController : MonoBehaviour
 {
     public AudioMixer mixer;
 
-    public void SetAudioLevel(float amount = 0.5f)
+    public void SetAudioLevel(float amount)
     {
         mixer.SetFloat("MasterAudioVolume", Mathf.Log10(amount) * 20);
     }

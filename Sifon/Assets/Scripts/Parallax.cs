@@ -3,9 +3,7 @@
 public class Parallax : MonoBehaviour
 {
     public Transform[] backgrounds;
-
-    private GameObject[] backGroundArray;
-    private Transform cam;
+    private Transform camTransform;
     private Vector3 previousCamPos;
     private Vector3 backgroundTargetPos;
 
@@ -16,7 +14,7 @@ public class Parallax : MonoBehaviour
 
     private void Start()
     {
-        cam = Camera.main.transform;
+        camTransform = Camera.main.transform;
         
         FillTransformArrays();  
     }
@@ -24,9 +22,9 @@ public class Parallax : MonoBehaviour
     private void Update()
     {
 
-        if (cam == null)
+        if (camTransform == null)
         {
-            cam = Camera.main.transform;
+            camTransform = Camera.main.transform;
         }
         if (backgrounds == null)
         {
@@ -34,7 +32,7 @@ public class Parallax : MonoBehaviour
         }
 
         CalculateParallax();
-        previousCamPos = cam.position;
+        previousCamPos = camTransform.position;
     }
 
     private void CalculateParallax()
@@ -42,7 +40,7 @@ public class Parallax : MonoBehaviour
         
         for (int i = 0; i < backgrounds.Length; i++)
         {
-            parallax = (previousCamPos.x - cam.position.x) * parallaxScale[i];//kameranin bir onceki karedeki konumu ve su an ki konumunun cikarilip derinlik ile carpilmasi
+            parallax = (previousCamPos.x - camTransform.position.x) * parallaxScale[i];//kameranin bir onceki karedeki konumu ve su an ki konumunun cikarilip derinlik ile carpilmasi
             backgroundTargetPosX = backgrounds[i].position.x + parallax; //kaydirilicak miktarin hesaplanmasi
             backgroundTargetPos = new Vector3(backgroundTargetPosX, backgrounds[i].position.y, backgrounds[i].position.z); // arka planin , kameranin hareketine gore yeniden konumlanmasi icin gerekli vektor hesabi
             backgrounds[i].position = Vector3.Lerp(backgrounds[i].position, backgroundTargetPos, smoothing * Time.deltaTime);// lineer interpolasyon ile su anki konumdan , gitmesi gereken konuma belli bir hiz ile gecisi
@@ -52,25 +50,15 @@ public class Parallax : MonoBehaviour
     private void FillTransformArrays()
     {
         
-        backGroundArray = GameObject.FindGameObjectsWithTag("Background");//background ismine sahip objelerin bulunup arraye alinmasi
-        
-        //bulunan tum background objelerinin transformlarinin arraye aktarilmasi
-        for (int i = 0; i < backGroundArray.Length; i++)
-        {
-            backgrounds[i] = backGroundArray[i].transform;
-        }
-
-        previousCamPos = cam.position;
+        previousCamPos = camTransform.position;
         parallaxScale = new float[backgrounds.Length];
         
 
-        //arrayimizdeki tum transformlarin derinligini(z yonundeki vektor degeri) bir arraye doldurulmasi
+        //tum arkaplan transformlarinin derinliklerinin(konum vektorunun z yonundeki degeri) bir diziye doldurulmasi
         for (int i = 0; i < backgrounds.Length; i++)
         {
             parallaxScale[i] = backgrounds[i].position.z * -1;
         }
-
-
     }
 
 

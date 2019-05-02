@@ -23,7 +23,7 @@ public class PlayerMovementControl : MonoBehaviour
     private float playerMovementSpeed = 100f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
-    private const float groundedRadius = .2f;
+    private const float groundedRadius = .01f;
     private const float jumpForce  = 400f;
 
     void Start()
@@ -86,6 +86,7 @@ public class PlayerMovementControl : MonoBehaviour
         {
             if (colliders[i].gameObject != gameObject)
             {
+                
                 isGrounded = true;
                 canDoubleJump = true;
             }

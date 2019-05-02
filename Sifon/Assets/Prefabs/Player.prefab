@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 9092552579446760934}
   - component: {fileID: 9092552579446760953}
   - component: {fileID: 586710824}
+  - component: {fileID: 1001401210}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -185,7 +186,7 @@ MonoBehaviour:
   isAirControl: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
 --- !u!58 &9092552579446760953
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,6 +217,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePointTransform: {fileID: 8718296105143162310}
   bullet: {fileID: 6576839417389289347, guid: 0d443f87946ed9e429b05a33b58a3f57, type: 3}
+--- !u!114 &1001401210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092552579446760930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b723d58c8c4f08042a1af01ad478e001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9092552579525069426
 GameObject:
   m_ObjectHideFlags: 0

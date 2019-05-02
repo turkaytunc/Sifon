@@ -9,7 +9,7 @@ public class AnimationControl : MonoBehaviour
     private Animator anim;
     private FirePoint firePoint;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
@@ -66,6 +66,7 @@ public class AnimationControl : MonoBehaviour
     {
         if (playerMovement == null)
         {
+          
             playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
         }
 
