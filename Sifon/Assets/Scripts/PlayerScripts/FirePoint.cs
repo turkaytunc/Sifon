@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FirePoint : MonoBehaviour
-{
-    private float fireRate = 2f;
-    private float timeToShoot = 0f;
+{  
     public Transform firePointTransform;
     public GameObject bullet;
+    public bool FaceRight { get; set; } = true;
+
+    private const float fireRate = 2f;
+    private float timeToShoot = 0f;
     private PlayerInput playerInput;
     private Vector3 right, left, bulletDirection;
-    public bool FaceRight { get; set; } = true;
 
 
     void Start()
@@ -19,13 +18,13 @@ public class FirePoint : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         timeToShoot = 1 / fireRate;
     }
-    
+
     void Update()
     {
 
         timeToShoot = timeToShoot - Time.deltaTime;
-        
-        if(timeToShoot <= 0)
+
+        if (timeToShoot <= 0)
         {
             Shooting();
             timeToShoot = 1 / fireRate;
@@ -34,7 +33,7 @@ public class FirePoint : MonoBehaviour
         else if (timeToShoot > 0)
         {
             SingleShooting();
-        }         
+        }
     }
 
     public void Shooting()
@@ -53,6 +52,7 @@ public class FirePoint : MonoBehaviour
         }
     }
     
+
     public void CreateBullet()
     {
         if (FaceRight)

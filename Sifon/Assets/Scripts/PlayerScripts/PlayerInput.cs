@@ -51,5 +51,14 @@ public class PlayerInput : MonoBehaviour
         return false;
     }
 
+    public bool KButtonDown()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            return true;
+        }
+        return false;
+    }
+
 };
 
