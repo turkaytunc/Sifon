@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasScript : MonoBehaviour
 {
@@ -42,10 +43,6 @@ public class CanvasScript : MonoBehaviour
         if(movementControl == null)
         {
             movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
-        }
-        if (playerInput.KButtonDown())
-        {
-            playerStats.Health += 5;
         }
 
         playerCurrentHealth = playerStats.Health;
@@ -99,11 +96,11 @@ public class CanvasScript : MonoBehaviour
         {
             if (!menuPanel.gameObject.activeInHierarchy)
             {
-                menuPanel.gameObject.SetActive(true);
+                menuPanel.gameObject.SetActive(true);               
             }
             else
             {
-                menuPanel.gameObject.SetActive(false);
+                menuPanel.gameObject.SetActive(false);                
             }
         }
     }
@@ -123,5 +120,7 @@ public class CanvasScript : MonoBehaviour
         transform.Find("ScoreText").gameObject.GetComponent<Text>().text = playerStats.Score.ToString();
 
     }
+
+    
 
 }
