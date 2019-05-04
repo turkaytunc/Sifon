@@ -11,27 +11,25 @@ public class PlayerMovementControl : MonoBehaviour
 
     private Transform groundCheck;
     private PlayerInput playerInput;
-    
+
     private Rigidbody2D rb;
-    private Vector2 playerMovementVector;
-    private Collider2D colliders;
 
     private float playerHorizontalMovement;
     private float playerMovementSpeed = 100f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
-    private const float groundedRadius = .2f;
-    private const float jumpForce  = 400f;
+    private const float groundedRadius = .1f;
+    private const float jumpForce = 200f;
 
     void Start()
     {
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
-        groundCheck = transform.Find("GroundCheck");           
+        groundCheck = transform.Find("GroundCheck");
     }
 
     //fizik hesaplamalarinin yapilmasi
-    void  FixedUpdate()
+    void FixedUpdate()
     {
         isGrounded = false;
         CheckGround();
@@ -49,14 +47,15 @@ public class PlayerMovementControl : MonoBehaviour
         }
         if (isGrounded && playerInput.JumpButtonDown())
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime *100));
             canDoubleJump = true;
             isGrounded = false;
         }
         else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime *100));
             canDoubleJump = false;
-            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
         }
 
     }
@@ -66,7 +65,7 @@ public class PlayerMovementControl : MonoBehaviour
     {
         set
         {
-            if(value > 100 && value < 200)
+            if (value > 100 && value < 200)
             {
                 playerMovementSpeed = value;
             }
@@ -76,13 +75,11 @@ public class PlayerMovementControl : MonoBehaviour
     //karakterin carpisma dedektoru kullanarak yakin oldugu yuzeyin yer olup olmadigini kontrol etmesi
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, whatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
+        RaycastHit2D r2d = Physics2D.Raycast(transform.position, Vector2.down, 1f, whatIsGround);
+
+        if (r2d)
         {
-            if (colliders[i].gameObject != gameObject)
-            {             
-                isGrounded = true;
-            }
+            isGrounded = true;
         }
     }
 }
