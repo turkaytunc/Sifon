@@ -52,7 +52,7 @@ public class FirePoint : MonoBehaviour
         }
     }
     
-
+    //merminin uzaydaki konumu ve rotasyonu ayarlanir ve mermi objesi olusturulur
     public void CreateBullet()
     {
         if (FaceRight)

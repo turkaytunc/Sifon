@@ -10,46 +10,38 @@ public class PlayerMovementControl : MonoBehaviour
     private LayerMask whatIsGround;
 
     private Transform groundCheck;
-    private Transform ceilingCheck;
     private PlayerInput playerInput;
     
     private Rigidbody2D rb;
-    private Vector2 directionalInput;
     private Vector2 playerMovementVector;
     private Collider2D colliders;
-    private CameraFollow cameraFollow;
 
     private float playerHorizontalMovement;
     private float playerMovementSpeed = 100f;
     private bool isGrounded = false;
     private bool canDoubleJump = false;
-    private const float groundedRadius = .01f;
+    private const float groundedRadius = .2f;
     private const float jumpForce  = 400f;
 
     void Start()
     {
-        cameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
-        groundCheck = transform.Find("GroundCheck");
-        ceilingCheck = transform.Find("CeilingCheck");      
+        groundCheck = transform.Find("GroundCheck");           
     }
 
     //fizik hesaplamalarinin yapilmasi
     void  FixedUpdate()
     {
-        directionalInput = playerInput.DirectionalInput;
-        cameraFollow.CameraFollowPosition = transform.position;
         isGrounded = false;
         CheckGround();
         MoveCharacter();
-        
     }
 
-    //Karakterin yatay olarak hareket ettirilmesi
+    //Karakterin hareket ettirilmesi
     private void MoveCharacter()
     {
-        playerHorizontalMovement = directionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
+        playerHorizontalMovement = playerInput.DirectionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
         //eger karakter yere temas ediyorsa veya havada kontrol aktif ise saga-sola hareket edilebilmesi
         if (isGrounded || isAirControl)
         {
@@ -57,13 +49,17 @@ public class PlayerMovementControl : MonoBehaviour
         }
         if (isGrounded && playerInput.JumpButtonDown())
         {
-            rb.AddForce(new Vector2(0, jumpForce));
+            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            canDoubleJump = true;
+            isGrounded = false;
         }
-        if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
+        else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
         {
-            rb.AddForce(new Vector2(0, jumpForce));
             canDoubleJump = false;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
         }
+
     }
 
     //karakterin harektet hizinin belli bir aralikta tutulmasi
@@ -85,15 +81,9 @@ public class PlayerMovementControl : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
-            {
-                
+            {             
                 isGrounded = true;
-                canDoubleJump = true;
             }
         }
     }
-
-
-
-
 }

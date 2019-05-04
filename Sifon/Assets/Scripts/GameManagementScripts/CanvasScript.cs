@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasScript : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class CanvasScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    //ilk degerlerin atanmasi ve referanslar
     private void Start()
     {
         playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
@@ -43,10 +45,6 @@ public class CanvasScript : MonoBehaviour
         {
             movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
         }
-        if (playerInput.KButtonDown())
-        {
-            playerStats.Health += 5;
-        }
 
         playerCurrentHealth = playerStats.Health;
         playerCurrentPosition = movementControl.transform.position;
@@ -59,6 +57,7 @@ public class CanvasScript : MonoBehaviour
 
     public void SaveGameButton()
     {
+        //kayit icin gerekli kayit nesnesinin olusturulmasi ve degerlerin atanmasi
         SaveObject saveObject = new SaveObject
         {
             playerPosition = playerCurrentPosition,
@@ -66,10 +65,9 @@ public class CanvasScript : MonoBehaviour
             playerHealth = playerCurrentHealth
         };
 
+        //nesnenin json formatina cevirilmesi ve kayit icin static kayit sinifina yollanmasi
         json = JsonUtility.ToJson(saveObject);
         SaveLoadHandler.SaveString(json);
-
-
 
         //YAPILACAK: Oyunun kaydedildigine dair bilgiyi ekranda gostermek icin ui eklemesi yap
         Debug.Log("Game Saved");
@@ -77,13 +75,14 @@ public class CanvasScript : MonoBehaviour
 
     public void LoadGameButton()
     {
+        //diskten okunan bilginin tekrardan kayit objesine donusturulmesi
         loadedString = SaveLoadHandler.LoadString();
         SaveObject loadObject = JsonUtility.FromJson<SaveObject>(loadedString);
 
+        //kayit objesinin icindeki bilgilerin gerekli yerlere atanmasi
         movementControl.transform.position = loadObject.playerPosition;
         playerStats.Health = loadObject.playerHealth;
         playerStats.Score = float.Parse(loadObject.score);
-
         Debug.Log("Game Loaded");
     }
 
@@ -99,15 +98,17 @@ public class CanvasScript : MonoBehaviour
         {
             if (!menuPanel.gameObject.activeInHierarchy)
             {
-                menuPanel.gameObject.SetActive(true);
+                menuPanel.gameObject.SetActive(true);               
             }
             else
             {
-                menuPanel.gameObject.SetActive(false);
+                menuPanel.gameObject.SetActive(false);                
             }
         }
     }
 
+
+    //oyun kayit veya yukleme icin gerekli sinif
     private class SaveObject
     {
         public Vector3 playerPosition;
@@ -118,10 +119,10 @@ public class CanvasScript : MonoBehaviour
 
     private void HandleUI()
     {
-
         transform.Find("PlayerHealth").gameObject.GetComponent<Text>().text = playerStats.Health.ToString();
         transform.Find("ScoreText").gameObject.GetComponent<Text>().text = playerStats.Score.ToString();
-
     }
+
+    
 
 }
