@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
     }
 
     //Tum fizik ve veri girisi hesaplamalarinin ardinda lateupdate cagrilir

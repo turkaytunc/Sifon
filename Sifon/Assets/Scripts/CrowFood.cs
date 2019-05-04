@@ -9,7 +9,7 @@ public class CrowFood : MonoBehaviour
 
     void Start()
     {
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();//player objesinin playerstats bilesenine referans
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();//player objesinin playerstats bilesenine referans
     }
 
 

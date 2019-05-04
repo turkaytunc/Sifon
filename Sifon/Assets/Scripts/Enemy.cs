@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float speed = 0.8f;
-    private float distance = 2f;
+    private float distance = 0.5f;
     private bool movingRight = true;
     private float health = 100;
 
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     //baslangic degerlerinin atanmasi 
     private void Start()
     {
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();// player isimli objenin uzerindeki PlayerStats componentine referans
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();// player isimli objenin uzerindeki PlayerStats componentine referans
     }
 
 

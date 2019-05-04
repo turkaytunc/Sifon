@@ -31,7 +31,7 @@ public class PlayerStats : MonoBehaviour
                 Score = 0;
             }
             else
-                Score -= 20;
+                Score -= 50;
         }
     }
 }

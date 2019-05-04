@@ -18,9 +18,9 @@ public class CanvasScript : MonoBehaviour
     //ilk degerlerin atanmasi ve referanslar
     private void Start()
     {
-        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-        movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        movementControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         menuPanel = transform.Find("MenuPanel");
         menuPanel.gameObject.SetActive(false);
     }
@@ -29,7 +29,7 @@ public class CanvasScript : MonoBehaviour
     {
         if(movementControl == null)
         {
-            movementControl = GameObject.Find("Player").GetComponent<PlayerMovementControl>();
+            movementControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
         }
 
         playerCurrentHealth = playerStats.Health;
