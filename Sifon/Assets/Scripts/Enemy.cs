@@ -56,9 +56,9 @@ public class Enemy : MonoBehaviour
         if(bullet.gameObject.tag == "Bullet")
         {
             health -= 20;
-            playerStats.Score += 10;
             if(health <= 0)
             {
+                playerStats.Score += 10;
                 Destroy(gameObject);
             }
         }

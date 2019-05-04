@@ -56,7 +56,6 @@ public class PlayerMovementControl : MonoBehaviour
         else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
         {
             canDoubleJump = false;
-            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
         }
 

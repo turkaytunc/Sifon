@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CanvasScript : MonoBehaviour
 {
@@ -15,19 +14,6 @@ public class CanvasScript : MonoBehaviour
     private string json;
     private string loadedString;
 
-    //Oyunda tek bir tane Canvas olmasini sagla
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else if(instance != null)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
     //ilk degerlerin atanmasi ve referanslar
     private void Start()
