@@ -15,7 +15,6 @@ public class PlayerMovementControl : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 playerMovementVector;
     private Collider2D colliders;
-    private CameraFollow cameraFollow;
 
     private float playerHorizontalMovement;
     private float playerMovementSpeed = 100f;
@@ -26,24 +25,20 @@ public class PlayerMovementControl : MonoBehaviour
 
     void Start()
     {
-        cameraFollow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
-        groundCheck = transform.Find("GroundCheck");
-            
+        groundCheck = transform.Find("GroundCheck");           
     }
 
     //fizik hesaplamalarinin yapilmasi
     void  FixedUpdate()
     {
-        cameraFollow.CameraFollowPosition = transform.position;
         isGrounded = false;
         CheckGround();
         MoveCharacter();
-        
     }
 
-    //Karakterin yatay olarak hareket ettirilmesi
+    //Karakterin hareket ettirilmesi
     private void MoveCharacter()
     {
         playerHorizontalMovement = playerInput.DirectionalInput.x * Time.fixedDeltaTime * playerMovementSpeed;
@@ -86,15 +81,9 @@ public class PlayerMovementControl : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
-            {
-                
+            {             
                 isGrounded = true;
-                
             }
         }
     }
-
-
-
-
 }

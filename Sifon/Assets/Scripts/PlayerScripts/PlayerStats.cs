@@ -8,21 +8,25 @@ public class PlayerStats : MonoBehaviour
     public string Name { get; set; }
     public float Score { get; set; }
 
+
     private void Start()
     {
         player = new PlayerData("Birdy", 100, 120);
         Health = player.PlayerHealth;
         Name = player.PlayerName;
-        Score = 0;
-        
+        Score = 0;      
     }
+
+
+    //Eger oyuncunun cani sifirin altina duserse veya bosluga duserse oyunu en basa sar
     private void Update()
     {
         if (Health <= 0 || transform.position.y < -15)
         {
             transform.position = new Vector3(0, 2, 0);
             Health = 100;
-            if(Score <= 20)
+
+            if (Score <= 20)
             {
                 Score = 0;
             }
@@ -30,5 +34,4 @@ public class PlayerStats : MonoBehaviour
                 Score -= 20;
         }
     }
-
 }

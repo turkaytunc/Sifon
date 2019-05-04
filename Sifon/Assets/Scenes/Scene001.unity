@@ -688,6 +688,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4328017731278936029, guid: 4290bfe648ab95c46a882887bf928f2b,
+        type: 3}
+      propertyPath: m_Name
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 4328017731278935841, guid: 4290bfe648ab95c46a882887bf928f2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -742,11 +747,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4328017731278936029, guid: 4290bfe648ab95c46a882887bf928f2b,
-        type: 3}
-      propertyPath: m_Name
-      value: MainCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4290bfe648ab95c46a882887bf928f2b, type: 3}
@@ -1042,6 +1042,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511611536}
     m_Modifications:
+    - target: {fileID: 9076190219757484842, guid: 6c3fbb602f58eaf4487577b7c4244859,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundMountainBack
+      objectReference: {fileID: 0}
     - target: {fileID: 2496061761449041930, guid: 6c3fbb602f58eaf4487577b7c4244859,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1096,11 +1101,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9076190219757484842, guid: 6c3fbb602f58eaf4487577b7c4244859,
-        type: 3}
-      propertyPath: m_Name
-      value: BackgroundMountainBack
       objectReference: {fileID: 0}
     - target: {fileID: 575961272, guid: 6c3fbb602f58eaf4487577b7c4244859, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2034,6 +2034,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511611536}
     m_Modifications:
+    - target: {fileID: 8926867202276380827, guid: 9ae75f2cb67673445b04aa5f6befc061,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundOnlyMountains
+      objectReference: {fileID: 0}
     - target: {fileID: 2644820746653338555, guid: 9ae75f2cb67673445b04aa5f6befc061,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2088,11 +2093,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8926867202276380827, guid: 9ae75f2cb67673445b04aa5f6befc061,
-        type: 3}
-      propertyPath: m_Name
-      value: BackgroundOnlyMountains
       objectReference: {fileID: 0}
     - target: {fileID: 438960803427510570, guid: 9ae75f2cb67673445b04aa5f6befc061,
         type: 3}
@@ -2219,6 +2219,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8207000037468196897, guid: af276396d1bd1c845a0b77ee1cd05905,
+        type: 3}
+      propertyPath: m_Name
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 8207000037468196902, guid: af276396d1bd1c845a0b77ee1cd05905,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2273,11 +2278,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8207000037468196897, guid: af276396d1bd1c845a0b77ee1cd05905,
-        type: 3}
-      propertyPath: m_Name
-      value: Environment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af276396d1bd1c845a0b77ee1cd05905, type: 3}
