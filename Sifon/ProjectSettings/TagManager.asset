@@ -12,6 +12,7 @@ TagManager:
   - FirePoint
   - Bullet
   - Enemy
+  - Yeni
   layers:
   - Default
   - TransparentFX
