@@ -18,6 +18,7 @@ public class CanvasScript : MonoBehaviour
     //ilk degerlerin atanmasi ve referanslar
     private void Start()
     {
+        SaveLoadHandler.CheckDirectory();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         movementControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementControl>();
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
@@ -79,7 +80,7 @@ public class CanvasScript : MonoBehaviour
     {
         if (playerInput.EscapeButtonDown())
         {
-            if (!menuPanel.gameObject.activeInHierarchy)
+            if (!menuPanel.gameObject.activeSelf)
             {
                 menuPanel.gameObject.SetActive(true);               
             }
