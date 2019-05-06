@@ -13,6 +13,7 @@ TagManager:
   - Bullet
   - Enemy
   - Yeni
+  - End
   layers:
   - Default
   - TransparentFX

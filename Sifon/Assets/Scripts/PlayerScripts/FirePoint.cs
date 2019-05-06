@@ -21,7 +21,6 @@ public class FirePoint : MonoBehaviour
 
     void Update()
     {
-
         timeToShoot = timeToShoot - Time.deltaTime;
 
         if (timeToShoot <= 0)
@@ -64,6 +63,5 @@ public class FirePoint : MonoBehaviour
             bulletDirection = new Vector3(0f, 0f, 90f);
         }
         Instantiate(bullet, firePointTransform.position, Quaternion.Euler(bulletDirection));
-
     }
 }

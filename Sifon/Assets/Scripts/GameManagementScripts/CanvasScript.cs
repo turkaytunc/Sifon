@@ -36,9 +36,7 @@ public class CanvasScript : MonoBehaviour
         playerCurrentPosition = movementControl.transform.position;
 
         HandleUI();
-
         MainMenu();
-        
     }
 
     public void SaveGameButton()
@@ -76,7 +74,6 @@ public class CanvasScript : MonoBehaviour
     {
         Application.Quit();
     }
-
 
     private void MainMenu()
     {

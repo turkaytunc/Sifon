@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,10 +7,9 @@ public class Enemy : MonoBehaviour
     private bool movingRight = true;
     private float health = 100;
 
-    public Transform groundDetection;
-    public RaycastHit2D groundInfo;
+    [SerializeField]private Transform groundDetection;
+    private RaycastHit2D groundInfo;
     private PlayerStats playerStats;
-
 
     //baslangic degerlerinin atanmasi 
     private void Start()
@@ -20,19 +17,17 @@ public class Enemy : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();// player isimli objenin uzerindeki PlayerStats componentine referans
     }
 
-
     //her karede unity tarafindan cagirilan fonksiyon
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         EnemyMovement();
     }
-
-
     //dusmanlarin hareketlerinin saglanmasi
     public void EnemyMovement()
     {
         groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);//yer yuzeyine bir isin yollanmasi
+        //Debug.DrawRay(groundDetection.position, Vector3.down, Color.red);
 
         //eger yollanan isin yere carpmiyor ise yaratigin gittigi yonu tersine cevir
         if (groundInfo.collider == false)
@@ -61,8 +56,7 @@ public class Enemy : MonoBehaviour
                 playerStats.Score += 10;
                 Destroy(gameObject);
             }
-        }
-        
+        }       
     }
 
     //oyuncu ile etkilesim halinde oyuncunun canini azalt

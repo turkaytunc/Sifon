@@ -9,7 +9,6 @@
     public   float PlayerYPos { get; set; }
     public   float PlayerZPos { get; set; }
 
-
     public PlayerData(string playerName, float playerHealth, float PlayerMovementSpeed)
     {
         PlayerName = playerName;
@@ -19,8 +18,6 @@
         PlayerYPos = 0;
         PlayerZPos = 0;
     }
-
-
     public  string PlayerName
     {        
         get
@@ -40,7 +37,6 @@
             }
         }
     }
-
     public  float PlayerHealth
     {
         get
