@@ -28,12 +28,9 @@ public class PlayerMovementControl : MonoBehaviour
     //fizik hesaplamalarinin yapilmasi
     void FixedUpdate()
     {
-
         isGrounded = false;
         CheckGround();
         MoveCharacter();
-        
-        
     }
     //Karakterin hareket ettirilmesi
     private void MoveCharacter()
@@ -44,15 +41,12 @@ public class PlayerMovementControl : MonoBehaviour
         {
             rb.velocity = new Vector2(playerHorizontalMovement, rb.velocity.y);
         }
+
         if (isGrounded && playerInput.JumpButtonDown)
         {
-            Debug.Log("mip");
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime *100));
             canDoubleJump = true;
             playerInput.JumpButtonDown = false;
-            
-
-
         }
         else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown)
         {
@@ -73,6 +67,7 @@ public class PlayerMovementControl : MonoBehaviour
             }
         }
     }
+
     //karakterin carpisma dedektoru kullanarak yakin oldugu yuzeyin yer olup olmadigini kontrol etmesi
     private void CheckGround()
     {
@@ -82,9 +77,6 @@ public class PlayerMovementControl : MonoBehaviour
         {
             isGrounded = true;
         }
-        Debug.Log(isGrounded);
-
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
