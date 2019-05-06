@@ -8,7 +8,6 @@ public static  class SaveLoadHandler
     {
         File.WriteAllText(Application.dataPath + "/save.json", saveString);
     }
-
     //kayitlarin diskten okumasi
     public static string LoadString()
     {

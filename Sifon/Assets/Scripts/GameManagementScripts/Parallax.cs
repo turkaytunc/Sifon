@@ -22,8 +22,6 @@ public class Parallax : MonoBehaviour
 
     private void Update()
     {
-       
-
         if (camTransform == null)
         {
             camTransform = Camera.main.transform;
@@ -32,7 +30,6 @@ public class Parallax : MonoBehaviour
         {
             FillTransformArrays();
         }
-
         CalculateParallax();
         previousCamPos = camTransform.position;
     }
@@ -48,12 +45,8 @@ public class Parallax : MonoBehaviour
                 backgroundTargetPos = new Vector3(backgroundTargetPosX, backgrounds[i].position.y, backgrounds[i].position.z); // arka planin , kameranin hareketine gore yeniden konumlanmasi icin gerekli vektor hesabi
                 backgrounds[i].position = Vector3.Lerp(backgrounds[i].position, backgroundTargetPos, smoothing * Time.deltaTime);// lineer interpolasyon ile su anki konumdan , gitmesi gereken konuma belli bir hiz ile gecisi
             }
-
-        }
-        
-       
+        }       
     }
-
     private void FillTransformArrays()
     {
         camTransform = Camera.main.transform;
@@ -71,7 +64,6 @@ public class Parallax : MonoBehaviour
 
         previousCamPos = camTransform.position;
         parallaxScale = new float[backgrounds.Length];
-        
 
         //tum arkaplan transformlarinin derinliklerinin(konum vektorunun z yonundeki degeri) bir diziye doldurulmasi
         for (int i = 0; i < backgrounds.Length; i++)

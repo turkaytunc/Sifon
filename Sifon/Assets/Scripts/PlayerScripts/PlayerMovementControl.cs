@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerMovementControl : MonoBehaviour
 {
-    [SerializeField]
-    private bool isAirControl = false;
-    [SerializeField]
-    private LayerMask whatIsGround;
+    [SerializeField]private bool isAirControl = false;
+    [SerializeField]private LayerMask whatIsGround;
 
     private Transform groundCheck;
     private PlayerInput playerInput;
-
     private Rigidbody2D rb;
 
     private float playerHorizontalMovement;
@@ -23,19 +21,20 @@ public class PlayerMovementControl : MonoBehaviour
 
     void Start()
     {
-        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("GroundCheck");
     }
-
     //fizik hesaplamalarinin yapilmasi
     void FixedUpdate()
     {
+
         isGrounded = false;
         CheckGround();
         MoveCharacter();
+        
+        
     }
-
     //Karakterin hareket ettirilmesi
     private void MoveCharacter()
     {
@@ -45,21 +44,24 @@ public class PlayerMovementControl : MonoBehaviour
         {
             rb.velocity = new Vector2(playerHorizontalMovement, rb.velocity.y);
         }
-        if (isGrounded && playerInput.JumpButtonDown())
+        if (isGrounded && playerInput.JumpButtonDown)
         {
+            Debug.Log("mip");
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime *100));
             canDoubleJump = true;
-            isGrounded = false;
+            playerInput.JumpButtonDown = false;
+            
+
+
         }
-        else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown())
+        else if (!isGrounded && canDoubleJump && playerInput.JumpButtonDown)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime *100));
             canDoubleJump = false;
+            playerInput.JumpButtonDown = false;
         }
-
     }
-
     //karakterin harektet hizinin belli bir aralikta tutulmasi
     public float PlayerMovementSpeed
     {
@@ -71,15 +73,24 @@ public class PlayerMovementControl : MonoBehaviour
             }
         }
     }
-
     //karakterin carpisma dedektoru kullanarak yakin oldugu yuzeyin yer olup olmadigini kontrol etmesi
     private void CheckGround()
     {
-        RaycastHit2D r2d = Physics2D.Raycast(transform.position, Vector2.down, 1f, whatIsGround);
+        RaycastHit2D r2d = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, whatIsGround);
 
         if (r2d)
         {
             isGrounded = true;
+        }
+        Debug.Log(isGrounded);
+
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "End")
+        {
+            SceneManager.LoadScene("Scene001");
         }
     }
 }

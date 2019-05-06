@@ -5,28 +5,25 @@ public class PlayerInput : MonoBehaviour
 {
 
     public Vector2 DirectionalInput { get; set; }
-
-    private void Start()
-    {
-    }
+    public  bool JumpButtonDown { get; set; }
 
     private void Update()
     {
         DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            JumpButtonDown = true;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            JumpButtonDown = false;
+        }
     }
 
     public bool EscapeButtonDown()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public bool JumpButtonDown()
-    {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Cancel"))
         {
             return true;
         }
@@ -60,5 +57,5 @@ public class PlayerInput : MonoBehaviour
         return false;
     }
 
-};
+}
 
