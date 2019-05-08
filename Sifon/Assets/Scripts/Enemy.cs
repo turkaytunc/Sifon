@@ -10,24 +10,22 @@ public class Enemy : MonoBehaviour
     [SerializeField]private Transform groundDetection;
     private RaycastHit2D groundInfo;
     private PlayerStats playerStats;
-
-    //baslangic degerlerinin atanmasi 
+    
     private void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();// player isimli objenin uzerindeki PlayerStats componentine referans
     }
-
-    //her karede unity tarafindan cagirilan fonksiyon
+    
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         EnemyMovement();
     }
     //dusmanlarin hareketlerinin saglanmasi
-    public void EnemyMovement()
+    private void EnemyMovement()
     {
         groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);//yer yuzeyine bir isin yollanmasi
-        //Debug.DrawRay(groundDetection.position, Vector3.down, Color.red);
+        Debug.DrawRay(groundDetection.position, Vector2.down, Color.red);
 
         //eger yollanan isin yere carpmiyor ise yaratigin gittigi yonu tersine cevir
         if (groundInfo.collider == false)
@@ -46,7 +44,7 @@ public class Enemy : MonoBehaviour
     }
 
     //mermi ile etkilesim halinde kendini yok et
-    public void OnTriggerEnter2D(Collider2D bullet)
+    private void OnTriggerEnter2D(Collider2D bullet)
     {
         if(bullet.gameObject.tag == "Bullet")
         {
@@ -60,7 +58,7 @@ public class Enemy : MonoBehaviour
     }
 
     //oyuncu ile etkilesim halinde oyuncunun canini azalt
-    public void OnCollisionEnter2D(Collision2D player)
+    private void OnCollisionEnter2D(Collision2D player)
     {
         if(player.gameObject.tag == "Player")
         {

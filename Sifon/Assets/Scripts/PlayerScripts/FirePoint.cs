@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 
 public class FirePoint : MonoBehaviour
-{  
-    public Transform firePointTransform;
-    public GameObject bullet;
+{
+    [SerializeField] private Transform firePointTransform;
+    [SerializeField] private GameObject bullet;
     public bool FaceRight { get; set; } = true;
 
     private const float fireRate = 2f;
     private float timeToShoot = 0f;
     private PlayerInput playerInput;
-    private Vector3 right, left, bulletDirection;
-
+    private Vector3 bulletDirection;
 
     void Start()
     {
@@ -35,7 +34,7 @@ public class FirePoint : MonoBehaviour
         }
     }
 
-    public void Shooting()
+    private void Shooting()
     {
         if (playerInput.LeftMouseButton())
         {
@@ -43,16 +42,16 @@ public class FirePoint : MonoBehaviour
         }
     }
 
-    public void SingleShooting()
+    private void SingleShooting()
     {
         if (playerInput.LeftMouseButtonDown())
         {
             CreateBullet();
         }
     }
-    
+
     //merminin uzaydaki konumu ve rotasyonu ayarlanir ve mermi objesi olusturulur
-    public void CreateBullet()
+    private void CreateBullet()
     {
         if (FaceRight)
         {
