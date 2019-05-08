@@ -4,7 +4,6 @@ public class AnimationControl : MonoBehaviour
 {
     private PlayerMovementControl playerMovement;
     private PlayerInput playerInput;
-    private GameObject bulletPoint;
     private Animator anim;
     private FirePoint firePoint;
 
@@ -38,8 +37,6 @@ public class AnimationControl : MonoBehaviour
     //Klavye girisine gore karakterin baktigi yonun degistirilmesi
     private void Flip(Vector2 directionalInput)
     {
-        bulletPoint = playerMovement.transform.Find("FirePoint").gameObject;
-
         if (directionalInput.x > 0)
         {
             playerMovement.transform.localScale = new Vector3(1f, 1f, 1f);

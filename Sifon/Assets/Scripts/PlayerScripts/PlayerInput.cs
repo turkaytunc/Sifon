@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovementControl))]
 public class PlayerInput : MonoBehaviour
 {
 

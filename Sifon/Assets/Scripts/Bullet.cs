@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     }
 
     //dusmanla etkilesime girdiginde kendini yok et
-    public void OnTriggerEnter2D(Collider2D enemy)
+    private void OnTriggerEnter2D(Collider2D enemy)
     {
         if (enemy.gameObject.tag == "Enemy")
         {
